@@ -1,0 +1,46 @@
+#Copyright (c) 2011-2016 NVIDIA Corporation.  All Rights Reserved.
+#
+#NVIDIA Corporation and its licensors retain all intellectual property and
+#proprietary rights in and to this software and related documentation.  Any
+#use, reproduction, disclosure or distribution of this software and related
+#documentation without an express license agreement from NVIDIA Corporation
+#is strictly prohibited.
+
+on early-init
+    # create /oem symbol link
+    symlink /system/vendor/oem /oem
+    chmod 0755 /oem
+    chown root system /oem
+
+on fs
+    setprop ro.crypto.tmpfs_options size=128m,mode=0771,uid=1000,gid=1000
+    setprop ro.crypto.umount_sd false
+    setprop ro.crypto.fuse_sdcard true
+    setprop audio.custompolicy 1
+    mount_all /fstab.jetson-tk1
+    swapon_all /fstab.jetson-tk1
+
+on post-fs-data
+    # Set SELinux security contexts for NvCPL keylayout files.
+    mkdir /data/system/devices 0774 system system
+    mkdir /data/system/devices/keylayout 0774 system system
+    restorecon_recursive /data/system/devices/keylayout
+
+on boot
+    #max resolution supported for Miracast is 720p, represented interms of macroblocks
+    setprop nvwfd.max_macroblocks 3600
+    #disable 1080p miracast connection for hdvideoplayback
+    setprop nvwfd.hdvideoplayback 0
+
+on init
+    setprop keyguard.no_require_sim true
+    setprop persist.tegra.didim.enable 0
+    write /d/tegra_actmon/cpu_emc/avg_act_threshold 50000
+
+service charger /charger
+    class charger
+    seclabel u:r:healthd:s0
+    group input
+
+on charger
+    setprop persist.sys.usb.config mtp,adb
