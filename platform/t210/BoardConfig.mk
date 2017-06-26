@@ -62,19 +62,14 @@ BOARD_USES_POWERHAL := true
 #TARGET_KERNEL_CONFIG := tegra12_android_defconfig
 #BOARD_KERNEL_CMDLINE := androidboot.hardware=tegra androidboot.selinux=permissive
 
-# Broadcom 4356 PCIe Wifi related defines
+# Wifi related defines
+BOARD_WLAN_DEVICE := pcie
+CONFIG_CTRL_IFACE := y
+WPA_SUPPLICANT_VERSION := VER_0_8_X
+BOARD_HOSTAPD_DRIVER := NL80211
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
-WPA_SUPPLICANT_VERSION      := VER_0_8_X
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
-BOARD_WLAN_DEVICE           := bcmdhd
-BOARD_HOSTAPD_DRIVER        := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB   := lib_driver_cmd_bcmdhd
-WIFI_DRIVER_FW_PATH_STA     := "/system/vendor/firmware/fw_bcmdhd.bin"
-WIFI_DRIVER_FW_PATH_AP      := "/system/vendor/firmware/fw_bcmdhd.bin"
-WIFI_DRIVER_FW_PATH_P2P     := "/system/vendor/firmware/fw_bcmdhd.bin"
-WIFI_DRIVER_FW_PATH_PARAM   := "/sys/module/bcmdhd/parameters/firmware_path"
-WIFI_DRIVER_MODULE_ARG      := "iface_name=wlan0"
-WIFI_DRIVER_MODULE_NAME     := "bcmdhd"
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_pcie
+BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_pcie
 
 # Default HDMI mirror mode
 # Crop (default) picks closest mode, crops to screen resolution

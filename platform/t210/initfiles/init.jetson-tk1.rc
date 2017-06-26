@@ -34,4 +34,5 @@ on init
     chown system system /sys/bus/i2c/devices/1-0040/iio_device/running_mode
 
 on property:sys.boot_completed=1
-    write /sys/class/tty/ttyS0/console_write_enable 0
+    write /sys/class/gpio/export 234
+    write /sys/class/gpio/gpio234/direction high

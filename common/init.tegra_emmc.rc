@@ -14,6 +14,7 @@ on post-fs-data
 # create filesystems if necessary
 service setup_fs /system/bin/setup_fs \
         /dev/block/platform/sdhci-tegra.3/by-name/UDA \
+	/dev/block/platform/70021000.sata/by-num/p1 \
         /dev/block/platform/sdhci-tegra.3/by-name/CAC \
         /dev/block/platform/sdhci-tegra.3/by-name/FCT \
         /dev/block/platform/sdhci-tegra.3/by-name/UCB \

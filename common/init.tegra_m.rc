@@ -39,6 +39,9 @@ on fs
 # mount console ramooops
    mount pstore pstore /sys/fs/pstore
 
+    write /sys/class/gpio/export 234
+    write /sys/class/gpio/gpio234/direction high
+
 on post-fs-data
     # We chown/chmod /usercalib again so because mount is run as root + defaults
     chown system system /usercalib

@@ -175,6 +175,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     slot_metadata
 
+$(call inherit-product, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
+
 # touch screen and camera don't apply to Foster/Darcy
 ifeq ($(filter foster_e% darcy%, $(TARGET_PRODUCT)),)
 # Sharp touch
