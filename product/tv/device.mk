@@ -11,7 +11,8 @@ PRODUCT_AAPT_CONFIG := normal large xlarge tvdpi hdpi xhdpi xxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 PRODUCT_PROPERTY_OVERRIDES += \
-ro.com.google.clientidbase=android-nvidia
+ro.com.google.clientidbase=android-nvidia \
+ro.setupwizard.mode=OPTIONAL
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
@@ -22,9 +23,5 @@ PRODUCT_CHARACTERISTICS := tv
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
 
-#DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/../../common/overlay-common/$(PLATFORM_VERSION_LETTER_CODE)
-DEVICE_PACKAGE_OVERLAYS := device/nvidia/platform/t210/overlay
-
-ifneq ($(wildcard 3rdparty/google/gms-apps/tv),3rdparty/google/gms-apps/tv)
-    $(call inherit-product, $(SRC_TARGET_DIR)/product/generic_no_telephony.mk)
-endif
+DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/../../common/overlay-common/$(PLATFORM_VERSION_LETTER_CODE)
+DEVICE_PACKAGE_OVERLAYS := device/google/atv/overlay

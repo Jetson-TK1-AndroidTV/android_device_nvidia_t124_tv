@@ -53,6 +53,20 @@ PRODUCT_PACKAGES += \
     tegra_xusb_firmware \
     tegra12x_xusb_firmware
 
+# NVIDIA Audio
+PRODUCT_PACKAGES += \
+    audio.a2dp.default \
+    audio.usb.default \
+    audio.r_submix.default \
+    libaudio-resampler \
+    libaudiospdif \
+    libtinyalsa \
+    tinycap \
+    tinymix \
+    tinyplay \
+    xaplay \
+    libstagefrighthw
+
 PRODUCT_PACKAGES += \
         tos \
         keystore.tegra \
@@ -138,6 +152,7 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     badblocks \
+    busybox \
     e2fsck \
     fsck.exfat \
     fsck.f2fs \

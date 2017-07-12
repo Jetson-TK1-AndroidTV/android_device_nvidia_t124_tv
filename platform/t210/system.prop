@@ -44,3 +44,15 @@ ro.device.chipset=NVIDIA Tegra K1 T124
 ro.device.cpu=Quad Core 2.2GHz
 ro.device.gpu=NVIDIA GK20A (Kepler)
 ro.build.version.ota=5.1(24.28.403.124)
+
+# HDMI Primary
+persist.tegra.hdmi.primary=1
+persist.tegra.stb.mode=1
+persist.tegra.hdmi.resolution=Max
+
+# disable input resampling
+ro.input.noresample=1
+
+#audio specific properties
+ro.audio.usb.period_us=5000
+
