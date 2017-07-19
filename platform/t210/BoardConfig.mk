@@ -59,8 +59,9 @@ BOARD_USES_POWERHAL := true
 #KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.8/bin
 #KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
 #TARGET_KERNEL_SOURCE := kernel
+# HDMI Freq tested - 148367000 , 148350782
 #TARGET_KERNEL_CONFIG := tegra12_android_defconfig
-#BOARD_KERNEL_CMDLINE := androidboot.hardware=tegra androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := disp_params=hdmi:148350782,1920,1080,1,1,44,5,148,36,88,4 is_hdmi_initialised=1 vpr_resize androidboot.security=unlocked androidboot.bootreason=pmc:software_reset,pmic:NoReason tegra_fbmem=0x800000@0x92ca2000
 
 # Broadcom 4356 PCIe Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
