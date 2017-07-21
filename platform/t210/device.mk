@@ -19,7 +19,7 @@ $(call inherit-product-if-exists, vendor/nvidia/tegra/core/android/services/anal
 $(call inherit-product, vendor/nvidia/tegra/core/android/services/edid.mk)
 $(call inherit-product-if-exists, vendor/nvidia/tegra/core/android/t124/full.mk)
 $(call inherit-product-if-exists, vendor/nvidia/tegra/core/nvidia-tegra-vendor.mk)
-#$(call inherit-product, 3rdparty/google/gms-apps/tv/gms.mk)
+$(call inherit-product, 3rdparty/google/gms-apps/tv/gms.mk)
 $(call inherit-product, vendor/nvidia/shieldtech/common/shieldtech.mk)
 
 #enable Widevine drm
@@ -196,6 +196,10 @@ ifeq ($(filter foster_e% darcy%, $(TARGET_PRODUCT)),)
 PRODUCT_COPY_FILES += \
     device/nvidia/drivers/touchscreen/lr388k7_ts.idc:system/usr/idc/lr388k7_ts.idc \
     device/nvidia/common/init.sharp_touch.rc:root/init.sharp_touch.rc
+
+# Init Logo
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/logo/initlogo.rle:root/initlogo.rle
 
 # Nvidia touch
 PRODUCT_COPY_FILES += \
