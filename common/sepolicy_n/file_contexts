@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2016, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2014-2017, NVIDIA CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -140,6 +140,8 @@
 /dev/block/zram0			u:object_r:swap_block_device:s0
 # /dev/cy8c-led-boot devices
 /dev/cy8c-led-boot			u:object_r:cy8c_device:s0
+# DVB API device nodes
+/dev/dvb.*				u:object_r:dvb_device:s0
 
 #############################
 # System files
@@ -205,6 +207,9 @@
 (/system)?/vendor/oem/media(/.*)?	u:object_r:oem_media_file:s0
 # camera config
 /system/bin/config_cameras.sh		u:object_r:config_cameras_exec:s0
+# service to dump logs
+(/system)?/vendor/bin/cac_log_dumper	u:object_r:cac_log_dumper_exec:s0
+
 
 #############################
 # Data files
@@ -247,6 +252,8 @@
 /data/upnpfuse(/.*)?			u:object_r:upnpfuse_cache_file:s0
 # bluedroid_log
 /data/misc/bluedroid_log(/.*)?		u:object_r:bluetooth_log_file:s0
+# cac_log_dumper data file
+/cache/logs(/.*)?			u:object_r:cache_log_dumper_file:s0
 
 #############################
 # sysfs files
@@ -276,9 +283,19 @@
 /sys/devices/platform/gpu.0/devfreq/gpu.0/available_frequencies		u:object_r:sysfs_devfreq:s0
 /sys/devices/platform/psy_extcon.*/power_supply/usb/online		u:object_r:sysfs_power_supply:s0
 /sys/devices/platform/psy_extcon.*/power_supply/ac/online		u:object_r:sysfs_power_supply:s0
-/sys/devices/platform/pwm-fan.*/pwm_cap		u:object_r:sysfs_pwm_fan:s0
-/sys/devices/platform/pwm-fan.*/pwm_state_map		u:object_r:sysfs_pwm_fan:s0
-/sys/devices/platform/pwm-fan.*/state_cap		u:object_r:sysfs_pwm_fan:s0
+
+# pwm-fan sysfs nodes
+/sys/devices/platform/pwm-fan/pwm_cap   		u:object_r:sysfs_pwm_fan:s0
+/sys/devices/platform/pwm-fan/pwm_state_map		u:object_r:sysfs_pwm_fan:s0
+/sys/devices/platform/pwm-fan/state_cap 		u:object_r:sysfs_pwm_fan:s0
+/sys/devices/platform/pwm-fan/cur_pwm   		u:object_r:sysfs_pwm_fan:s0
+/sys/devices/platform/pwm-fan/pwm_rpm_table		u:object_r:sysfs_pwm_fan:s0
+/sys/devices/platform/pwm-fan/rpm_measured		u:object_r:sysfs_pwm_fan:s0
+/sys/devices/platform/pwm-fan/step_time 	    	u:object_r:sysfs_pwm_fan:s0
+/sys/devices/platform/pwm-fan/tach_enable		u:object_r:sysfs_pwm_fan:s0
+/sys/devices/platform/pwm-fan/target_pwm		u:object_r:sysfs_pwm_fan:s0
+/sys/devices/platform/pwm-fan/temp_control		u:object_r:sysfs_pwm_fan:s0
+
 # cfboost sysfs for pbc access
 /sys/module/input_cfboost/parameters/boost_freq		u:object_r:sysfs_cfboost:s0
 /sys/module/input_cfboost/parameters/boost_gpu		u:object_r:sysfs_cfboost:s0

@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2016, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2014-2017, NVIDIA CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -238,9 +238,19 @@
 /sys/class/thermal/thermal_zone\.*(/.*)?	u:object_r:sysfs_thermal:s0
 /sys/devices/platform/host1x/tegradc.[0-1]/smartdimmer(/.*)	u:object_r:sysfs_smartdimmer:s0
 /sys/devices/platform/host1x/tegradc\.[0-1]/cmu_enable		u:object_r:sysfs_cmu:s0
-/sys/devices/platform/pwm-fan.*/pwm_cap		u:object_r:sysfs_pwm_fan:s0
-/sys/devices/platform/pwm-fan.*/pwm_state_map		u:object_r:sysfs_pwm_fan:s0
-/sys/devices/platform/pwm-fan.*/state_cap		u:object_r:sysfs_pwm_fan:s0
+
+#pwm-fan sysfs nodes
+/sys/devices/platform/pwm-fan/pwm_cap			u:object_r:sysfs_pwm_fan:s0
+/sys/devices/platform/pwm-fan/pwm_state_map		u:object_r:sysfs_pwm_fan:s0
+/sys/devices/platform/pwm-fan/state_cap			u:object_r:sysfs_pwm_fan:s0
+/sys/devices/platform/pwm-fan/cur_pwm			u:object_r:sysfs_pwm_fan:s0
+/sys/devices/platform/pwm-fan/pwm_rpm_table		u:object_r:sysfs_pwm_fan:s0
+/sys/devices/platform/pwm-fan/rpm_measured		u:object_r:sysfs_pwm_fan:s0
+/sys/devices/platform/pwm-fan/step_time			u:object_r:sysfs_pwm_fan:s0
+/sys/devices/platform/pwm-fan/tach_enable		u:object_r:sysfs_pwm_fan:s0
+/sys/devices/platform/pwm-fan/target_pwm		u:object_r:sysfs_pwm_fan:s0
+/sys/devices/platform/pwm-fan/temp_control		u:object_r:sysfs_pwm_fan:s0
+
 # cfboost sysfs for pbc access
 /sys/module/input_cfboost/parameters/boost_freq		u:object_r:sysfs_cfboost:s0
 /sys/module/input_cfboost/parameters/boost_gpu		u:object_r:sysfs_cfboost:s0

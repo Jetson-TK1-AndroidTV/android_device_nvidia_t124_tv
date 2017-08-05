@@ -130,9 +130,6 @@ on boot
 # default SF to realtime
     setprop persist.sys.sf.realtime 1
 
-# adb over wifi
-    setprop service.adb.tcp.port 5555
-
 # Default Read Ahead value for sdcards
     write /sys/block/mmcblk0/queue/read_ahead_kb 2048
     write /sys/block/mmcblk1/queue/read_ahead_kb 2048

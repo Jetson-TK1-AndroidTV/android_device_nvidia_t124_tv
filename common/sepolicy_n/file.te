@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2016, NVIDIA CORPORATION.  All rights reserved.
+# Copyright (c) 2014-2017, NVIDIA CORPORATION.  All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -172,9 +172,6 @@ type sysfs_gpu_power_knobs, fs_type, sysfs_type;
 # /sys/devices/platform/psy_extcon.*/power_supply/ac/online
 type sysfs_power_supply, fs_type, sysfs_type;
 
-# Filesystem type CIFS
-type cifs, sdcard_type, fs_type, mlstrustedobject;
-
 # usb convertible mode: host or device
 type sysfs_usb_convertible, fs_type, sysfs_type;
 
@@ -233,3 +230,6 @@ type debugfs_cluster, fs_type, debugfs_type, mlstrustedobject;
 
 # /data/system/devices/keylayout(/.*)?
 type keylayout_data_file, file_type, data_file_type;
+
+# /cache/last_boot_(.*).txt
+type cache_log_dumper_file, file_type, mlstrustedobject;

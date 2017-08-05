@@ -1,59 +1,30 @@
 #!/system/bin/sh
 
-# Rfkill enables by default all radios it is responsible for at start.
-# It is up to each radio user space SW stack to switch rfkill off at
-# boot time but this is not always the case.
-# This script forces radios disabling in case their SW stack is not handling it.
-# It should be called from android init.rc at boot time
+# Copyright (c) 2015, NVIDIA CORPORATION.  All rights reserved.
+#
+# NVIDIA CORPORATION and its licensors retain all intellectual property
+# and proprietary rights in and to this software, related documentation
+# and any modifications thereto.  Any use, reproduction, disclosure or
+# distribution of this software and related documentation without an express
+# license agreement from NVIDIA CORPORATION is strictly prohibited.
 
-wifi="false"
-bt="false"
-gps="false"
-fm="false"
-nfc="false"
+bt_dtb_file="/proc/device-tree/chosen/nvidia,bt-mac"
+bt_fct_file="/mnt/factory/bluetooth/bt_mac.txt"
 
-# Parameters parsing
-while [[ $# > 0 ]]
-do
-param="$1"
-case $param in
-    wifi)
-    wifi="true"
-    ;;
-    bluetooth)
-    bt="true"
-    ;;
-    gps)
-    gps="true"
-    ;;
-    fm)
-    fm="true"
-    ;;
-    nfc)
-    nfc="true"
-    ;;
-    *)
-    # unknown option
-    ;;
-esac
-shift
-done
+# Deleted this line when nvidia,bt-mac becomes irrelevant and change
+# bt_dtb_file above to /proc/device-tree/chosen/nvidia,bluetooth-mac
+[ -e $bt_dtb_file ] || bt_dtb_file="/proc/device-tree/chosen/nvidia,bluetooth-mac"
 
-# Force radios disabling through /dev/rfkill
-if [ $wifi == "true" ]; then
-    echo "\x00\x00\x00\x00\x01\x03\x01" > /dev/rfkill
-fi
-if [ $bt == "true" ]; then
-    echo "\x00\x00\x00\x00\x02\x03\x01" > /dev/rfkill
-fi
-if [ $gps == "true" ]; then
-    echo "\x00\x00\x00\x00\x06\x03\x01" > /dev/rfkill
-fi
-if [ $fm == "true" ]; then
-    echo "\x00\x00\x00\x00\x07\x03\x01" > /dev/rfkill
-fi
-if [ $nfc == "true" ]; then
-    echo "\x00\x00\x00\x00\x08\x03\x01" > /dev/rfkill
-fi
+if [ -e $bt_dtb_file ] ; then
 
-exit 0
+    cat $bt_dtb_file | grep "[0-9A-Fa-f][0-9A-Fa-f]:[0-9A-Fa-f][0-9A-Fa-f]:[0-9A-Fa-f][0-9A-Fa-f]:[0-9A-Fa-f][0-9A-Fa-f]:[0-9A-Fa-f][0-9A-Fa-f]:[0-9A-Fa-f][0-9A-Fa-f]"
+
+    # Check if the contents of device-tree/nct/bt represent a correct mac address
+    if [ $? -eq 0 ] ; then
+        setprop ro.bt.bdaddr_path "${bt_dtb_file}"
+    else
+        setprop ro.bt.bdaddr_path "${bt_fct_file}"
+    fi
+else
+    setprop ro.bt.bdaddr_path "${bt_fct_file}"
+fi

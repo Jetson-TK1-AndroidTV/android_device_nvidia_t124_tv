@@ -23,5 +23,5 @@ PRODUCT_CHARACTERISTICS := tv
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
 
-DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/../../common/overlay-common/$(PLATFORM_VERSION_LETTER_CODE)
+#DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/../../common/overlay-common/$(PLATFORM_VERSION_LETTER_CODE)
 DEVICE_PACKAGE_OVERLAYS := device/nvidia/platform/t210/overlay

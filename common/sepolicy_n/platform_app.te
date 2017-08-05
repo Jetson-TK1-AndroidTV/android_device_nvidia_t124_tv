@@ -19,9 +19,6 @@ r_dir_file(platform_app, sysfs_thermal)
 # Access service manager
 allow platform_app system_app_service:service_manager find;
 
-allow platform_app cifs:dir create_dir_perms;
-allow platform_app cifs:file create_file_perms;
-
 # Access external card
 allow platform_app fuseblk:dir create_dir_perms;
 allow platform_app fuseblk:file create_file_perms;

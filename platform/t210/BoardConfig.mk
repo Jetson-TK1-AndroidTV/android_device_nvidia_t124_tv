@@ -61,7 +61,7 @@ BOARD_USES_POWERHAL := true
 #TARGET_KERNEL_SOURCE := kernel
 # HDMI Freq tested - 148367000 , 148350782
 #TARGET_KERNEL_CONFIG := tegra12_android_defconfig
-BOARD_KERNEL_CMDLINE := vmalloc=356M is_hdmi_initialised=1 vpr_resize androidboot.security=unlocked androidboot.bootreason=pmc:software_reset,pmic:NoReason tegra_fbmem=0x800000@0x92ca2000 androidboot.bootloader=4.00.2016.04-8b2413b7
+BOARD_KERNEL_CMDLINE := usb_port_owner_info=2 lane_owner_info=6 vmalloc=356M is_hdmi_initialised=1 vpr_resize androidboot.security=unlocked androidboot.bootreason=pmc:software_reset,pmic:NoReason tegra_fbmem=0x800000@0x92ca2000 androidboot.bootloader=4.00.2016.04-8b2413b7
 
 # Broadcom 4356 PCIe Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
