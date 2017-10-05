@@ -4,6 +4,9 @@
 #
 # 32-bit specific product settings
 
+TARGET_SCREEN_HEIGHT := 1920
+TARGET_SCREEN_WIDTH := 1080
+
 $(call inherit-product-if-exists, frameworks/base/data/videos/VideoPackage2.mk)
 $(call inherit-product, device/nvidia/platform/t210/device-common.mk)
 $(call inherit-product, vendor/nvidia/tegra/core/android/t210/nvflash.mk)

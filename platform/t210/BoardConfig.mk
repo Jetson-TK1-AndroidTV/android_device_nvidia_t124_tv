@@ -41,16 +41,10 @@ BOARD_CACHEIMAGE_PARTITION_SIZE := 805306368
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE := 4096
 
-# OTA
-TARGET_RECOVERY_UPDATER_LIBS += libnvrecoveryupdater
-TARGET_RECOVERY_UPDATER_EXTRA_LIBS += libfs_mgr
-TARGET_RECOVERY_UI_LIB := librecovery_ui_default libfscheck
-TARGET_RELEASETOOLS_EXTENSIONS := device/nvidia/common
-TARGET_NVPAYLOAD_UPDATE_LIB := libnvblpayload_updater
-
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR ?= device/nvidia/platform/t210/bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_HCI := true
+BCM_BLUETOOTH_MANTA_BUG := true
 
 # powerhal
 BOARD_USES_POWERHAL := true
@@ -61,7 +55,7 @@ BOARD_USES_POWERHAL := true
 #TARGET_KERNEL_SOURCE := kernel
 # HDMI Freq tested - 148367000 , 148350782
 #TARGET_KERNEL_CONFIG := tegra12_android_defconfig
-BOARD_KERNEL_CMDLINE := usb_port_owner_info=2 lane_owner_info=6 vmalloc=356M is_hdmi_initialised=1 vpr_resize androidboot.security=unlocked androidboot.bootreason=pmc:software_reset,pmic:NoReason tegra_fbmem=0x800000@0x92ca2000 androidboot.bootloader=4.00.2016.04-8b2413b7
+BOARD_KERNEL_CMDLINE := androidboot.hardware=jetson-tk1 androidboot.security=unlocked androidboot.bootreason=pmc:software_reset,pmic:NoReason androidboot.bootloader=4.00.2016.04-8b2413b7
 
 # Broadcom 4356 PCIe Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
@@ -125,44 +119,8 @@ ifeq ($(filter t210ref, $(TARGET_PRODUCT)),)
 BOARD_SUPPORT_ROLLBACK_PROTECTION := true
 endif
 
-# Icera modem definitions
--include device/nvidia/common/icera/BoardConfigIcera.mk
-
-# Raydium touch definitions
-include device/nvidia/drivers/touchscreen/raydium/BoardConfigRaydium.mk
-
-# Sharp touch definitions
-include device/nvidia/drivers/touchscreen/sharp/BoardConfigSharp.mk
-
-ifneq ($(filter falcon% hawkeye%, $(TARGET_PRODUCT)), )
-# Nvidia touch definitions
-include device/nvidia/drivers/touchscreen/nvtouch/BoardConfigNvtouch.mk
-endif
-
 # sepolicy
 BOARD_SEPOLICY_DIRS += device/nvidia/platform/t210/sepolicy/
 
 # seccomp policy
 BOARD_SECCOMP_POLICY = device/nvidia/platform/t210/seccomp/
-
-# Per-application sizes for shader cache
-MAX_EGL_CACHE_SIZE := 128450560
-MAX_EGL_CACHE_ENTRY_SIZE := 262144
-
-# GPU/EMC boosting for hwcomposer yuv packing
-HWC_YUV_PACKING_CPU_FREQ_MIN := -1
-HWC_YUV_PACKING_CPU_FREQ_MAX := -1
-HWC_YUV_PACKING_CPU_FREQ_PRIORITY := 15
-HWC_YUV_PACKING_GPU_FREQ_MIN := 691200
-HWC_YUV_PACKING_GPU_FREQ_MAX := 998400
-HWC_YUV_PACKING_GPU_FREQ_PRIORITY := 15
-HWC_YUV_PACKING_EMC_FREQ_MIN := 106560
-
-# GPU/EMC floor for glcomposer composition
-HWC_GLCOMPOSER_CPU_FREQ_MIN := -1
-HWC_GLCOMPOSER_CPU_FREQ_MAX := -1
-HWC_GLCOMPOSER_CPU_FREQ_PRIORITY := 15
-HWC_GLCOMPOSER_GPU_FREQ_MIN := 614400
-HWC_GLCOMPOSER_GPU_FREQ_MAX := 998400
-HWC_GLCOMPOSER_GPU_FREQ_PRIORITY := 15
-HWC_GLCOMPOSER_EMC_FREQ_MIN := 4080

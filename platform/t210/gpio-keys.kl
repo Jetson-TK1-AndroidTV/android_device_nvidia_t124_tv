@@ -1,5 +1,5 @@
 key 139   MENU              WAKE
-key 173   HOME              WAKE
+key 102   HOME              WAKE
 key 158   BACK              WAKE_DROPPED
 key 116   POWER             WAKE
 key 115   VOLUME_UP         WAKE_DROPPED

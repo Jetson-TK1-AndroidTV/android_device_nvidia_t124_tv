@@ -81,8 +81,8 @@ key 56    ALT_LEFT
 key 57    SPACE
 key 58    CAPS_LOCK
 key 59    F1
-key 60    F2
-key 61    SEARCH
+key 60    KEY_PROGRAM
+key 61    KEY_TV
 key 62    F4
 key 63    F5
 key 64    F6
@@ -326,7 +326,7 @@ key 366   DVR
 # key 374 "KEY_KEYBOARD"
 # key 375 "KEY_SCREEN"
 # key 376 "KEY_PC"
-key 377   TV
+# key 377   TV
 # key 378 "KEY_TV2"
 # key 379 "KEY_VCR"
 # key 380 "KEY_VCR2"
